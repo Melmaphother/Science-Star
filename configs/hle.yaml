@@ -1,0 +1,48 @@
+# Base configuration for run_hle.py
+
+# runtime
+concurrency: 1
+debug: false
+run_name: gpt-4o-mini-gaia
+
+# models
+model_id: gpt-4o-mini
+model_id_search: gpt-4o-mini
+model_id_retrieval: gpt-4o-mini
+
+# inference params
+planning_interval: 1
+max_steps: 12
+temperature: null
+top_p: null
+reflection: false
+
+# data selection
+split: test # validation | test
+level: all # all | 1 | 2 | 3
+selected_tasks: [] # can be indexes or task_ids; file path supported via helper
+
+# search params
+search_tool_reflection: false
+
+# plan params
+subtask: false
+static_plan: false
+dynamic_update_plan: false
+
+# TTS / search strategies
+n_rollouts: 1
+search_type: default # BON-wise | Beam-Search | Tree-Search | BON | default
+reflection_threshold: 2
+verify_type: list-wise # list-wise | scoring
+result_merging_type: list-wise # list-wise | scoring | voting
+
+# memory
+summary: false
+use_long_term_memory: false
+retrieve_key_memory: false
+
+# agent_kb
+agent_kb: false
+retrieval_type: hybrid # text | semantic | hybrid
+top_k: 3
