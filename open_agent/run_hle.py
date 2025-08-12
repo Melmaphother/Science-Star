@@ -32,6 +32,12 @@ from huggingface_hub import login, snapshot_download
 from typing import Dict, List
 from omegaconf import OmegaConf, DictConfig
 
+# Load ENVIRONMENT VARIABLES
+repo_root = Path(__file__).resolve().parents[1]
+env_path = repo_root / ".env"
+load_dotenv(dotenv_path=env_path, override=True)
+login(os.getenv("HF_TOKEN"))
+
 # DATA
 from data_utils.hle_loader import load_hle_dataset
 
@@ -100,12 +106,6 @@ AUTHORIZED_IMPORTS = [
 ]
 
 
-parent_dir = os.path.dirname(os.path.dirname(os.getcwd()))
-env_path = os.path.join(parent_dir, ".env")
-
-load_dotenv(dotenv_path=env_path, override=True)
-login(os.getenv("HF_TOKEN"))
-
 logger = logging.getLogger(__name__)
 
 jsonl_lock = threading.Lock()
@@ -122,7 +122,6 @@ def load_config() -> DictConfig:
     If a CLI key `config` is provided, it is treated as the path to the YAML base.
     Otherwise defaults to `<repo_root>/configs/hle.yaml`.
     """
-    repo_root = Path(__file__).resolve().parents[1]
     default_cfg_path = repo_root / "configs" / "hle.yaml"
     cli_cfg = OmegaConf.from_cli()
     cfg_path = Path(str(cli_cfg.get("config", default_cfg_path)))
@@ -549,23 +548,27 @@ Here is the task:
 
 
 def get_examples_to_answer(
-    answers_file, eval_df, selected_tasks=None, level="all", debug=False
+    answers_file, eval_df, selected_tasks=None, debug=False
 ) -> List[dict]:
     logger.info(f"Loading answers from {answers_file}...")
+    done_questions = []
     try:
-        answer_df = pd.read_json(answers_file, lines=True)
-        done_questions = answer_df.get("task_id", []).tolist()
-        logger.info(f"Found {len(done_questions)} previous results!")
+        path = Path(answers_file)
+        if path.exists() and path.is_file() and path.stat().st_size > 0:
+            answer_df = pd.read_json(path, lines=True)
+            done_questions = answer_df.get("task_id", []).tolist()
+            logger.info(f"Found {len(done_questions)} previous results!")
+        else:
+            logger.info(
+                "No usable records found (file missing or empty). ▶️ Starting new."
+            )
     except Exception as e:
-        logger.info("Error when loading records: ", e)
-        logger.info("No usable records! ▶️ Starting new.")
-        done_questions = []
+        logger.warning(
+            f"Error when loading records from {answers_file}: {e}. ▶️ Starting new."
+        )
 
-    if level == "all":
-        filtered_df = eval_df
-    else:
-        filtered_df = eval_df[eval_df["task"] == level]
-
+    # Default to the full dataset; optionally filter by selected tasks
+    filtered_df = eval_df
     if selected_tasks:
         if isinstance(selected_tasks[0], int):
             filtered_df = eval_df.iloc[selected_tasks]
@@ -573,10 +576,12 @@ def get_examples_to_answer(
             filtered_df = eval_df[eval_df["task_id"].isin(selected_tasks)]
 
     if debug:
+        # In debug mode, rerun all tasks
         done_questions = []
+
     return [
         row.to_dict()
-        for idx, row in filtered_df.iterrows()
+        for _, row in filtered_df.iterrows()
         if row["task_id"] not in done_questions
     ]
 
@@ -586,21 +591,60 @@ def main():
     logger.info(
         f"Starting run with config: {OmegaConf.to_container(args, resolve=True)}"
     )
-    output_dir = Path("output") / args.split
-    output_dir.mkdir(parents=True, exist_ok=True)
-    if args.use_long_term_memory:
-        answers_file = str(output_dir / f"{args.run_name}_long_term_memory.jsonl")
-    else:
-        answers_file = str(output_dir / f"{args.run_name}.jsonl")
 
+    # Root directory
+    args.repo_root = repo_root
+
+    # Output directory
+    output_dir = repo_root / "output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Run name directory
+    if " " in args.run_name or "/" in args.run_name:
+        args.run_name = args.run_name.replace(" ", "_").replace("/", "_")
+        logger.warning(
+            f"Run name contains spaces or slashes, replacing with underscores {args.run_name} "
+        )
+    run_dir = output_dir / args.run_name
+    run_dir.mkdir(parents=True, exist_ok=True)
+
+    # run time directory
+    if args.date_time_load_from:
+        # load from experiment start at date_time_load_from
+        date_time = args.date_time_load_from
+        if not os.path.exists(run_dir / date_time):
+            raise FileNotFoundError(
+                f"Previous experiment directory {run_dir / date_time} not found"
+            )
+        run_time_dir = run_dir / date_time
+        answers_file = run_time_dir / "answers.jsonl"
+    else:
+        # new experiment
+        date_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+        run_time_dir = run_dir / date_time
+        run_time_dir.mkdir(parents=True, exist_ok=True)
+        answers_file = run_time_dir / "answers.jsonl"
+
+    logger.info(f"Answers file: {answers_file}")
+
+    # Save config to run time directory
+    with open(run_time_dir / "config.yaml", "w") as f:
+        OmegaConf.save(config=args, f=f)
+
+    # A specific save path: output_dir / args.run_name / date_time / "answers.jsonl"
+
+    # Load dataset
     eval_df = load_hle_dataset(args)
 
+    # prepare examples to run, maybe skip tasks already done
     selected_tasks = process_selected_tasks_param(args.selected_tasks)
-    level = args.level
     tasks_to_run = get_examples_to_answer(
-        answers_file, eval_df, selected_tasks, level, args.debug
+        answers_file, eval_df, selected_tasks, args.debug
     )
+    logger.info(f"Running {len(tasks_to_run)} tasks")
 
+    # run tasks,
+    # single thread if debug or concurrency is 1
     if args.debug or args.concurrency == 1:
         for example in tasks_to_run:
             answer_single_question(
@@ -612,6 +656,7 @@ def main():
                 args.debug,
                 args.agent_kb,
             )
+    # multi-thread if concurrency > 1
     else:
         with ThreadPoolExecutor(max_workers=args.concurrency) as exe:
             futures = [

@@ -3,7 +3,12 @@
 # runtime
 concurrency: 1
 debug: false
-run_name: gpt-4o-mini-gaia
+run_name: gpt-4o-mini-hle  # model_name-dataset
+date_time_load_from: null
+
+# dataset
+dataset: hle
+selected_tasks: []
 
 # models
 model_id: gpt-4o-mini
@@ -16,11 +21,6 @@ max_steps: 12
 temperature: null
 top_p: null
 reflection: false
-
-# data selection
-split: test # validation | test
-level: all # all | 1 | 2 | 3
-selected_tasks: [] # can be indexes or task_ids; file path supported via helper
 
 # search params
 search_tool_reflection: false
