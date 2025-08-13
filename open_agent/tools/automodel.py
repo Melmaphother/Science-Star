@@ -18,7 +18,6 @@ import os
 import json
 from smolagents.models import (
     OpenAIServerModel,
-    FakeToolCallOpenAIServerModel,
 )
 
 def process_selected_tasks_param(tasks_param):
@@ -64,7 +63,7 @@ def get_api_model(model_id):
     model_wrapper = OpenAIServerModel
     key = os.getenv("OPENAI_API_KEY")
     url = os.getenv("OPENAI_BASE_URL")
-    if "deepseek" in model_id.lower() or 'claude' in model_id.lower():
-        model_wrapper = FakeToolCallOpenAIServerModel
-
+    # Note: Using OpenAIServerModel for all models including deepseek and claude
+    # as FakeToolCallOpenAIServerModel is not available in the installed smolagents version
+    
     return model_id, key, url, model_wrapper
