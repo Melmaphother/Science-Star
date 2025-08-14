@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://github.com/Melmaphother/Open-Agent/stargazers"><img src="https://img.shields.io/github/stars/Melmaphother/Open-Agent" alt="GitHub Repo stars"></a>
   <a href="https://github.com/Melmaphother/Open-Agent/network/members"><img src="https://img.shields.io/github/forks/Melmaphother/Open-Agent" alt="GitHub forks"></a>
-  <a href="https://github.com/Melmaphother/Open-Agent/assets/wechat.jpeg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
+  <a href="https://github.com/Melmaphother/Open-Agent/blob/main/assets/wechat.jpeg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
 </p>
 
 ## 📢 News
