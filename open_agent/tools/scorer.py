@@ -14,6 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""
+Answer Scoring and Evaluation Module
+
+This module provides comprehensive answer evaluation capabilities for AI agents,
+supporting both rule-based and LLM-based judging methods. It includes:
+- Rule-based scoring for exact matches, numerical values, and lists
+- LLM judge functionality using OpenAI models for nuanced evaluation
+- Calibration metrics and accuracy calculations
+- Configurable evaluation parameters and custom prompts
+"""
+
 import json
 import re
 import string
@@ -38,7 +49,11 @@ try:
 except ImportError:
     print("Warning: python-dotenv not installed. Environment variables may not be loaded.")
 
-# LLM Judge Configuration Class
+# ============================================================================
+# LLM Judge Configuration
+# ============================================================================
+# Configuration classes and utilities for LLM-based answer evaluation
+
 class LLMJudgeConfig:
     """Configuration class for LLM judge functionality."""
     
@@ -139,7 +154,10 @@ class LLMJudgeConfig:
 # Default configuration instance
 default_llm_config = LLMJudgeConfig.from_env()
 
+# ============================================================================
 # Configuration Utility Functions
+# ============================================================================
+# Helper functions for creating and managing LLM judge configurations
 def create_llm_config(
     api_key: Optional[str] = None,
     base_url: Optional[str] = None,
@@ -202,7 +220,11 @@ def validate_config(config: LLMJudgeConfig) -> bool:
     except Exception:
         return False
 
-# LLM Judge Configuration
+# ============================================================================
+# LLM Judge Prompt and Response Models
+# ============================================================================
+# Structured prompt template and Pydantic models for LLM-based evaluation
+
 JUDGE_PROMPT = """Judge whether the following [response] to [question] is correct or not based on the precise and unambiguous [correct_answer] below.
 
 [question]: {question}
@@ -222,6 +244,7 @@ correct: Answer 'yes' if extracted_final_answer matches the [correct_answer] giv
 
 confidence: The extracted confidence score between 0% and 100% from [response]. Put 100 if there is no confidence score available."""
 
+# Pydantic model for structured LLM judge responses
 class ExtractedAnswer(BaseModel):
     extracted_final_answer: str
     reasoning: str
@@ -229,6 +252,11 @@ class ExtractedAnswer(BaseModel):
     confidence: int
     strict: Literal[True] = True  # 100% reliability
 
+
+# ============================================================================
+# Rule-Based Scoring Functions
+# ============================================================================
+# Traditional scoring methods for exact matching and numerical comparison
 
 def normalize_number_str(number_str: str) -> float:
     for char in ["$", "%", ","]:
@@ -248,6 +276,7 @@ def split_string(
     return re.split(pattern, s)
 
 
+# Main rule-based scoring function supporting numbers, lists, and strings
 def question_scorer(
     model_answer: str,
     ground_truth: str,
@@ -304,7 +333,11 @@ def normalize_str(input_str, remove_punct=True) -> str:
         return no_spaces.lower()
 
 
+# ============================================================================
 # LLM Judge Functions
+# ============================================================================
+# Advanced evaluation using language models for nuanced answer assessment
+
 async def llm_judge_answer(
     question: str,
     model_answer: str,
@@ -387,7 +420,11 @@ def llm_judge_answer_sync(
     ))
 
 
+# ============================================================================
 # Unified Scoring Interface
+# ============================================================================
+# Main entry point supporting both rule-based and LLM-based evaluation methods
+
 def score_answer(
     model_answer: str,
     ground_truth: str,
@@ -426,7 +463,11 @@ def score_answer(
         raise ValueError(f"Unknown scoring method: {method}")
 
 
-# Calibration and Metrics Functions (from run_judge_results.py)
+# ============================================================================
+# Calibration and Metrics Functions
+# ============================================================================
+# Statistical analysis tools for evaluating model confidence and accuracy
+
 def calib_err(confidence: np.ndarray, correct: np.ndarray, p: str = '2', beta: int = 100) -> float:
     """Calculate calibration error.
     
@@ -534,7 +575,11 @@ def print_metrics(metrics: Dict[str, float]) -> None:
         print(f"Note: Only {metrics['available_predictions']} predictions available out of {metrics['total_questions']} total questions")
 
 
+# ============================================================================
 # Example Usage and Documentation
+# ============================================================================
+# Comprehensive examples demonstrating various scoring methods and configurations
+
 """
 Example usage of the configurable LLM judge functionality:
 
