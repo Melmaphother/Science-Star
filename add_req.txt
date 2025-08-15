@@ -1,0 +1,3 @@
+smolagents
+langchain
+crawl4ai

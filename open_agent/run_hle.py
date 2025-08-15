@@ -42,7 +42,7 @@ login(os.getenv("HF_TOKEN"))
 from data_utils.hle_loader import load_hle_dataset
 
 # TOOLS
-from tools.scorer import question_scorer
+from tools.scorer import question_scorer, score_answer
 from tools.reformulator import prepare_response
 from tools.searcher import SearchTool
 from tools.run_agents import (
@@ -85,7 +85,7 @@ AUTHORIZED_IMPORTS = [
     "bs4",
     "pubchempy",
     "xml",
-    "yahoo_finance",
+    "yfinance",
     "Bio",
     "sklearn",
     "scipy",
@@ -160,6 +160,18 @@ def append_answer(entry: dict, jsonl_file: str, file_lock) -> None:
             )
             if entry.get("agent_error"):
                 md.write(f"- Error: {entry['agent_error']}\n")
+            
+            # Add judgment details if available
+            judgment = entry.get("judgment_result")
+            if judgment:
+                md.write("### LLM Judge Evaluation\n")
+                md.write(f"- **Correctness**: {judgment.get('correct', 'N/A')}\n")
+                md.write(f"- **Confidence**: {judgment.get('confidence', 'N/A')}\n")
+                md.write(f"- **Extracted Answer**: {judgment.get('model_answer', 'N/A')}\n")
+                if judgment.get('reasoning'):
+                    md.write(f"- **Judge Reasoning**: {judgment['reasoning']}\n")
+                md.write(f"- **Judge Model**: {judgment.get('config_used', {}).get('model', 'N/A')}\n")
+            
             md.write("### Reasoning Steps\n")
             for step in entry.get("intermediate_steps", []):
                 md.write(f"- {step}\n")
@@ -199,13 +211,6 @@ def create_agent_hierarchy(model: Model, model_search: Model, args, debug=False)
     Your request must be a real sentence, not a google search! Like "Find me this information (...)" rather than a few keywords.
     """,
         provide_run_summary=True,
-        debug=debug,
-        static_plan=args.static_plan,
-        dynamic_update_plan=args.dynamic_update_plan,
-        reflection=args.reflection,
-        agent_kb=args.agent_kb,
-        top_k=args.top_k,
-        retrieval_type=args.retrieval_type,
     )
     text_webbrowser_agent.prompt_templates["managed_agent"][
         "task"
@@ -224,22 +229,6 @@ def create_agent_hierarchy(model: Model, model_search: Model, args, debug=False)
         additional_authorized_imports=AUTHORIZED_IMPORTS,
         planning_interval=args.planning_interval,
         managed_agents=[text_webbrowser_agent],
-        debug=debug,
-        subtask=args.subtask,
-        static_plan=args.static_plan,
-        dynamic_update_plan=args.dynamic_update_plan,
-        reflection=args.reflection,
-        reflection_threshold=args.reflection_threshold,
-        verify_type=args.verify_type,
-        result_merging_type=args.result_merging_type,
-        n_rollouts=args.n_rollouts,
-        search_type=args.search_type,
-        summary=args.summary,
-        use_long_term_memory=args.use_long_term_memory,
-        retrieve_key_memory=args.retrieve_key_memory,
-        agent_kb=args.agent_kb,
-        top_k=args.top_k,
-        retrieval_type=args.retrieval_type,
     )
     return manager_agent
 
@@ -528,6 +517,21 @@ Here is the task:
         raised_exception = True
 
     end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Generate detailed judgment using LLM judge
+    judgment_result = None
+    if output and not raised_exception:
+        try:
+            judgment_result = score_answer(
+                model_answer=output,
+                ground_truth=example["true_answer"],
+                question=example["question"],
+                method="llm_judge"
+            )
+        except Exception as e:
+            logger.warning(f"LLM judge failed for task {example['task_id']}: {e}")
+            judgment_result = None
+    
     annotated_example = {
         "agent_name": model.model_id,
         "question": example["question"],
@@ -542,7 +546,8 @@ Here is the task:
         "end_time": end_time,
         "task": example["task"],
         "task_id": example["task_id"],
-        "search_agent_actions": agent.managed_agents["search_agent"].task_records,
+        "search_agent_actions": getattr(agent.managed_agents["search_agent"], 'task_records', []) if agent.managed_agents and "search_agent" in agent.managed_agents else [],
+        "judgment_result": judgment_result,
     }
     append_answer(annotated_example, answers_file, jsonl_lock)
 
