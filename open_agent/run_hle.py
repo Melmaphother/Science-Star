@@ -151,7 +151,7 @@ def append_answer(entry: dict, jsonl_file: str, file_lock) -> None:
             md.write(f"- Predicted Answer: {entry.get('prediction', '')}\n")
             md.write(f"- True Answer: {entry.get('true_answer', '')}\n")
             md.write(f"- Task ID: {entry.get('task_id', '')}\n")
-            md.write(f"- Task Level: {entry.get('task', '')}\n")
+            md.write(f"- Category: {entry.get('category', '')}\n")
             md.write(f"- Start Time: {entry.get('start_time', '')}\n")
             md.write(f"- End Time: {entry.get('end_time', '')}\n")
             md.write(f"- Parsing Error: {entry.get('parsing_error', '')}\n")
@@ -544,7 +544,7 @@ Here is the task:
         "agent_error": str(exception) if raised_exception else None,
         "start_time": start_time,
         "end_time": end_time,
-        "task": example["task"],
+        "category": example["category"],
         "task_id": example["task_id"],
         "search_agent_actions": getattr(agent.managed_agents["search_agent"], 'task_records', []) if agent.managed_agents and "search_agent" in agent.managed_agents else [],
         "judgment_result": judgment_result,

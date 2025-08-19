@@ -8,6 +8,8 @@ date_time_load_from: null
 
 # dataset
 dataset: hle
+subset: small # null | small | medium | large
+category: null # null | bio | chem | cs | engineer | social | math | physics | other
 selected_tasks: []
 
 # models

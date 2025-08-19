@@ -22,9 +22,9 @@ if jsonl_file and Path(jsonl_file).exists():
         col1, col2, col3 = st.columns(3)
         with col1:
             task_filter = st.multiselect(
-                "Task level filter",
-                options=sorted(df["task"].dropna().unique().tolist()),
-                default=sorted(df["task"].dropna().unique().tolist()),
+                "Category filter",
+                options=sorted(df["category"].dropna().unique().tolist()),
+                default=sorted(df["category"].dropna().unique().tolist()),
             )
         with col2:
             parsing_filter = st.selectbox(
@@ -36,7 +36,7 @@ if jsonl_file and Path(jsonl_file).exists():
             )
         # Apply filters, ensure `filtered` always a DataFrame
         filtered = df.copy()
-        filtered = filtered[filtered["task"].isin(task_filter)]
+        filtered = filtered[filtered["category"].isin(task_filter)]
         if parsing_filter != "All":
             filtered = filtered[filtered["parsing_error"] == parsing_filter]
         if iter_filter != "All":
@@ -51,7 +51,7 @@ if jsonl_file and Path(jsonl_file).exists():
                 "true_answer",
                 "parsing_error",
                 "iteration_limit_exceeded",
-                "task",
+                "category",
                 "start_time",
                 "end_time",
             ]
@@ -66,7 +66,7 @@ if jsonl_file and Path(jsonl_file).exists():
             st.markdown(f"### Question\n{detail['question']}")
             st.markdown(f"### Predicted Answer\n{detail['prediction']}")
             st.markdown(f"### True Answer\n{detail['true_answer']}")
-            st.markdown(f"### Task Level: {detail.get('task', '')}")
+            st.markdown(f"### Category: {detail.get('category', '')}")
             st.markdown(f"### Start Time: {detail.get('start_time', '')}")
             st.markdown(f"### End Time: {detail.get('end_time', '')}")
             st.markdown(f"### Parsing Error: {detail.get('parsing_error', '')}")
