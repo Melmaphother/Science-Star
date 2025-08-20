@@ -3,7 +3,7 @@ import pandas as pd
 import json
 from pathlib import Path
 
-# streamlit run analyze_result.py
+# streamlit run vis_output.py
 st.title("HLE Results Visualization (Enhanced)")
 
 jsonl_file = st.text_input(
