@@ -17,15 +17,15 @@
 
 ## 🧠 Overview
 
-**Open-Agent** is an open-source framework designed to accelerate research and development at the critical intersection of **RL** and **Agent**. Our framework employs **End-to-End** reinforcement learning to train agents in specific environments. Developers need only define domain-specific tools and reward functions to extend Agent-R1 to their unique use cases, eliminating the need for complex workflow engineering. We hope our modest contribution can benefit the open-source community, making it easier for researchers and developers to create and explore agents in their own domains, collectively advancing the development of autonomous agents. For more details on the algorithm, see [algorithm doc](https://github.com/0russwest0/Agent-R1/blob/main/docs/algorithm/algorithm.md).
+We introduce **Science-Star**, the open-source framework built to revolutionize how we build, extend, and experiment scientific AI agents. Frustrated by the limitations of existing tools, we engineered Science-Star to be intuitive yet powerful. At its core, Science-Star combines a robust **ReAct-based engine** with essential features like Planning, RAG, integrated **HLE dataset support**, and **powerful visualization tools**. It's an all-in-one platform designed to get your ideas from concept to reality, faster than ever. Whether you are a seasoned researcher or a curious developer, Science-Star provides the tools you need to push the boundaries of science. The next breakthrough is waiting. Let's build it together. Join the Science-Star community today!
 
-> **Also check out [Awesome-Agent](https://github.com/0russwest0/Awesome-Agent-RL)**: Our curated collection of papers and resources on unlocking the potential of Agents through Reinforcement Learning.
+> **Also check out [Awesome-Agent-Craft](https://github.com/Melmaphother/Awesome-Agent-Craft)**: Our curated collection of papers and benchmarks on unlocking the potential of Scientific AI Agents.
 
 ## 🔥 Key Features
 
 - **Integrated Visualization**: An end-to-end, extensible visualization suite powered by [streamlit](https://github.com/streamlit/streamlit). It streamlines the entire workflow from data inspection and real-time experiment monitoring to results logging and analysis.
 
-- **Plug-and-Play Modularity**: Core components (`DataLoader`, `Memory`, `Planner`, `Tool`, `Evaluator`) are designed with well-defined interfaces. This modularity enables effortless substitution and customization.
+- **Plug-and-Play Modularity**: Core components (`dataLoader`, `memory`, `planner`, `tool`, `evaluator`) are designed with well-defined interfaces. This modularity enables effortless substitution and customization.
 
 - **Scientific Extensibility**: A dedicated adaptation layer for seamless integration of scientific tools (e.g., Chemistry, Biology). It has built-in support for advanced retrieval and literature-based Retrieval-Augmented Generation (RAG).
 
@@ -51,15 +51,15 @@ We welcome all forms of feedback! Please raise an issue for bugs, questions, or 
 
 ## 🤝 Contributors
 
-**Student Contributors**: [**Daoyu Wang**](https://github.com/Melmaphother), [**Qingchuan Li**](https://github.com/wufeiwuwoshihua), [**Tian Gao**](https://github.com/SkyeGT), [**Shuo Yu**](https://github.com/fishsure), [**Xiaoyu Tao**](https://github.com/Xiaoyu-Tao)
+**Student Contributors**: [**Daoyu Wang**](https://github.com/Melmaphother), [**Qingchuan Li**](https://github.com/wufeiwuwoshihua), [**Tian Gao**](https://github.com/SkyeGT), [**Shuo Yu**](https://github.com/fishsure), [**Xiaoyu Tao**](https://github.com/Xiaoyu-Tao), [**Ze Guo**](https://github.com/Kawai1Angel)
 
 **Supervisors**: [**Qi Liu**](http://staff.ustc.edu.cn/~qiliuql/), [**Mingyue Cheng**](https://mingyue-cheng.github.io/)
 
-**Affiliation**: **State Key Laboratory of Cognitive Intelligence, USTC**
+**Affiliation**: **State Key Laboratory of Cognitive Intelligence, University of Science and Technology of China**
 
 ## 🥰 Acknowledgements
 
-We extend our gratitude to [OAgent](https://github.com/OPPO-PersonalAI/OAgents) for providing the OAgent and hard work in engineering. We are also thankful to the [smolagent](https://github.com/huggingface/smolagents) team for their fundamental support. Lastly, we deeply appreciate the insightful discussions and contributions from Daoyu Wang, Qingchuan Li, Tian Gao, Shuo Yu, Xiaoyu Tao.
+We extend our gratitude to [OAgent](https://github.com/OPPO-PersonalAI/OAgents) for providing the OAgent and hard work in engineering. We are also thankful to the [smolagent](https://github.com/huggingface/smolagents) team for their fundamental support. Lastly, we deeply appreciate the insightful discussions and contributions from Daoyu Wang, Qingchuan Li, Tian Gao, Shuo Yu, Xiaoyu Tao, Ze Guo.
 
 ## ✍️ Citation
 
