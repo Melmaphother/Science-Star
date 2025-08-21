@@ -402,7 +402,7 @@ Here is the task:
         + example["question"]
     )
 
-    if example["file_name"]:
+    if example.get("file_name"):
         if ".zip" in example["file_name"]:
             prompt_use_files = "\n\nTo solve the task above, you will have to use these attached files:\n"
             prompt_use_files += get_zip_description(
@@ -448,7 +448,7 @@ Here is the task:
             output_query = semantic_match_template.format(
                 question=example["question"],
                 prediction=output,
-                true_answer=example["true_answer"],
+                true_answer=example["answer"],
             )
 
             semantic_check = call_model(
@@ -529,7 +529,7 @@ Here is the task:
                 method="llm_judge"
             )
         except Exception as e:
-            logger.warning(f"LLM judge failed for task {example['task_id']}: {e}")
+            logger.warning(f"LLM judge failed for task {example['id']}: {e}")
             judgment_result = None
     
     annotated_example = {
@@ -537,7 +537,7 @@ Here is the task:
         "question": example["question"],
         "augmented_question": augmented_question,
         "prediction": output,
-        "true_answer": example["true_answer"],
+        "true_answer": example["answer"],
         "intermediate_steps": intermediate_steps,
         "parsing_error": parsing_error,
         "iteration_limit_exceeded": iteration_limit_exceeded,
@@ -545,7 +545,7 @@ Here is the task:
         "start_time": start_time,
         "end_time": end_time,
         "category": example["category"],
-        "task_id": example["task_id"],
+        "id": example["id"],
         "search_agent_actions": getattr(agent.managed_agents["search_agent"], 'task_records', []) if agent.managed_agents and "search_agent" in agent.managed_agents else [],
         "judgment_result": judgment_result,
     }
@@ -561,7 +561,7 @@ def get_examples_to_answer(
         path = Path(answers_file)
         if path.exists() and path.is_file() and path.stat().st_size > 0:
             answer_df = pd.read_json(path, lines=True)
-            done_questions = answer_df.get("task_id", []).tolist()
+            done_questions = answer_df.get("id", []).tolist()
             logger.info(f"Found {len(done_questions)} previous results!")
         else:
             logger.info(
@@ -578,7 +578,7 @@ def get_examples_to_answer(
         if isinstance(selected_tasks[0], int):
             filtered_df = eval_df.iloc[selected_tasks]
         else:
-            filtered_df = eval_df[eval_df["task_id"].isin(selected_tasks)]
+            filtered_df = eval_df[eval_df["id"].isin(selected_tasks)]
 
     if debug:
         # In debug mode, rerun all tasks
@@ -587,7 +587,7 @@ def get_examples_to_answer(
     return [
         row.to_dict()
         for _, row in filtered_df.iterrows()
-        if row["task_id"] not in done_questions
+        if row["id"] not in done_questions
     ]
 
 
