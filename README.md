@@ -1,4 +1,4 @@
-<h1 align="center"> Science-Star: An Open Platform for Building, Extending, and Experimenting with Scientific Agents. </h1>
+<h1 align="center"> 🌟 Science-Star: An Open Platform for Building, Extending, and Experimenting with Scientific Agents. </h1>
 
 <p align="center">
   <a href="https://github.com/Melmaphother/Science-Star/stargazers"><img src="https://img.shields.io/github/stars/Melmaphother/Science-Star" alt="GitHub Repo stars"></a>
@@ -6,20 +6,24 @@
   <a href="https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpeg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
 </p>
 
+<p align="center"><img src="assets/overview.png" width="900px" alt="Agent vs Workflow" /></p>
+
 ## 📢 News
 
 <details open>
 <summary><b>Recent Updates</b></summary>
 
-- [2025.08.15] **Science-Star Init**: We release Science-Star. It is an user-friendly open platform for building, extending, and experimenting with scientific agents.
+- [2025.08.21] **Science-Star Init**: We release Science-Star. It is an user-friendly open platform for building, extending, and experimenting with scientific agents.
 
 </details>
 
 ## 🧠 Overview
 
-We introduce **Science-Star**, the open-source framework built to revolutionize how we build, extend, and experiment scientific AI agents. Frustrated by the limitations of existing tools, we engineered Science-Star to be intuitive yet powerful. At its core, Science-Star combines a robust **ReAct-based engine** with essential features like Planning, RAG, integrated **HLE dataset support**, and **powerful visualization tools**. It's an all-in-one platform designed to get your ideas from concept to reality, faster than ever. Whether you are a seasoned researcher or a curious developer, Science-Star provides the tools you need to push the boundaries of science. The next breakthrough is waiting. Let's build it together. Join the Science-Star community today!
+We introduce **Science-Star**, the open-source framework built to revolutionize how we build, extend, and experiment scientific AI agents. Frustrated by the limitations of existing tools, we engineered Science-Star to be intuitive yet powerful. At its core, Science-Star combines a robust **ReAct-based engine** with essential features like Planning, Action, Memory and Reflection, integrated **HLE dataset support**, and **powerful visualization tools**. It's an all-in-one platform designed to get your ideas from concept to reality, faster than ever. Whether you are a seasoned researcher or a curious developer, Science-Star provides the tools you need to push the boundaries of science. The next breakthrough is waiting. Let's build it together. Join the Science-Star community today!
 
 > **Also check out [Awesome-Agent-Craft](https://github.com/Melmaphother/Awesome-Agent-Craft)**: Our curated collection of papers and benchmarks on unlocking the potential of Scientific AI Agents.
+
+<p align="center"><img src="assets/framework.png" width="900px" alt="RICO Framework" /></p>
 
 ## 🔥 Key Features
 
@@ -29,7 +33,7 @@ We introduce **Science-Star**, the open-source framework built to revolutionize 
 
 - **Scientific Extensibility**: Science-Star has built-in support for advanced retrieval and literature-based Retrieval-Augmented Generation (RAG).
 
-## Incoming Features
+## 🚩 Incoming Features
 
 - **More Scientific Extensibility**: We will add more tools for seamless integration of specific scientific tools (e.g., Chemistry, Biology).
 
@@ -50,6 +54,10 @@ Additional resources are available in the codebase:
 - Example tools: `science_star/tools/`
 - Data preprocessing: `science_star/data_utils`
 - Visualization: `visualization/vis_xx`
+
+## 🧪 Experimental Results
+
+Using o4-mini-2025-04-16 as our base model, we have achieved **state-of-the-art (SOTA)** results on a small-scale HLE dataset by implementing an **end-to-end pipeline** that leverages the **ReAct** framework with integrated **planning, action, memory and reflection** modules. The project requires further testing and refinement. We invite the open-source community to join us in shaping the future of this work. Let's build together!
 
 ## ℹ️ Feedback
 
