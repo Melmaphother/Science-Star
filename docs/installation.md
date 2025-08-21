@@ -1,15 +1,15 @@
 # 🛠️ Installation Guide
 
-Ready to set up your scientific AI laboratory? Let's get Open-Agent running on your system! 🚀
+Ready to set up your scientific AI laboratory? Let's get Science-Star running on your system! 🚀
 
 ## 📦 Quick Setup
 
 ### 🔄 **Step 1: Clone the Repository**
-Get the latest version of Open-Agent:
+Get the latest version of Science-Star:
 
 ```bash
-git clone git@github.com:Melmaphother/Open-Agent.git
-cd Open-Agent/
+git clone git@github.com:Melmaphother/Science-Star.git
+cd Science-Star/
 ```
 
 ### 🐍 **Step 2: Create Your Python Environment**
@@ -17,8 +17,8 @@ Set up a clean conda environment for optimal performance:
 
 ```bash
 # Create a fresh conda environment with Python 3.10
-conda create -n open-agent python==3.10
-conda activate open-agent
+conda create -n Science-Star python==3.10
+conda activate Science-Star
 ```
 
 ### 📚 **Step 3: Install Dependencies**
@@ -46,7 +46,7 @@ Once installation completes, verify everything is working:
 cd ..
 
 # Quick test - this should show the help message
-python3 open_agent/run_hle.py --help
+python3 science_star/run_hle.py --help
 ```
 
 ## 🚨 Common Installation Issues (Don't Panic!)
@@ -78,9 +78,9 @@ During installation, you might see some scary-looking error messages. **Don't wo
 ## 🆘 Need Help?
 
 - 💬 Join our [WeChat community](../assets/wechat.jpeg) for real-time support
-- 🐛 Report installation issues on our [GitHub Issues](https://github.com/Melmaphother/Open-Agent/issues)
+- 🐛 Report installation issues on our [GitHub Issues](https://github.com/Melmaphother/Science-Star/issues)
 - 📖 Check the [Project Structure](project_structure.md) for more details
 
 ---
 
-**🎉 Congratulations!** Your Open-Agent installation is complete! Ready to dive into the [Quick Start Guide](quickstart.md)? 🚀✨
+**🎉 Congratulations!** Your Science-Star installation is complete! Ready to dive into the [Quick Start Guide](quickstart.md)? 🚀✨

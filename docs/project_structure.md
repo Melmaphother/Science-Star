@@ -1,8 +1,8 @@
-# 🏗️ Open-Agent Project Architecture Guide
+# 🏗️ Science-Star Project Architecture Guide
 
-Welcome to the **Open-Agent** universe! 🚀 This isn't just another project structure - it's a carefully crafted ecosystem designed to empower scientific AI agents. Let's take a journey through each component and discover what makes this platform tick! ⚡
+Welcome to the **Science-Star** universe! 🚀 This isn't just another project structure - it's a carefully crafted ecosystem designed to empower scientific AI agents. Let's take a journey through each component and discover what makes this platform tick! ⚡
 
-## 🧠 Core Intelligence Hub - `open_agent/`
+## 🧠 Core Intelligence Hub - `science_star/`
 
 The beating heart of our scientific agent ecosystem! This is where all the magic happens. ✨
 
@@ -137,13 +137,13 @@ Open-source goodness with proper attribution! 📜
 ## 🎯 Quick Navigation Tips
 
 🔥 **Hot Paths for Development:**
-- Start with `open_agent/run_hle.py` for main workflows
-- Explore `open_agent/tools/` for extending agent capabilities  
-- Dive into `open_agent/rag/` for advanced retrieval features
+- Start with `science_star/run_hle.py` for main workflows
+- Explore `science_star/tools/` for extending agent capabilities  
+- Dive into `science_star/rag/` for advanced retrieval features
 - Check `visualization/` for data exploration and result analysis
 - Modify `configs/hle.yaml` for experiment customization
 
 🚀 **Ready to Build Something Amazing?**
-This architecture is designed for extensibility and experimentation. Each component is carefully crafted to work harmoniously while maintaining clear boundaries. Whether you're building new tools, integrating novel models, or creating custom evaluation pipelines, Open-Agent provides the foundation you need!
+This architecture is designed for extensibility and experimentation. Each component is carefully crafted to work harmoniously while maintaining clear boundaries. Whether you're building new tools, integrating novel models, or creating custom evaluation pipelines, Science-Star provides the foundation you need!
 
 Happy coding, and may your agents be ever intelligent! 🤖✨

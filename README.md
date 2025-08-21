@@ -1,9 +1,9 @@
-<h1 align="center"> Open-Agent: An Open Platform for Building, Extending, and Experimenting with Scientific Agents. </h1>
+<h1 align="center"> Science-Star: An Open Platform for Building, Extending, and Experimenting with Scientific Agents. </h1>
 
 <p align="center">
-  <a href="https://github.com/Melmaphother/Open-Agent/stargazers"><img src="https://img.shields.io/github/stars/Melmaphother/Open-Agent" alt="GitHub Repo stars"></a>
-  <a href="https://github.com/Melmaphother/Open-Agent/network/members"><img src="https://img.shields.io/github/forks/Melmaphother/Open-Agent" alt="GitHub forks"></a>
-  <a href="https://github.com/Melmaphother/Open-Agent/blob/main/assets/wechat.jpeg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
+  <a href="https://github.com/Melmaphother/Science-Star/stargazers"><img src="https://img.shields.io/github/stars/Melmaphother/Science-Star" alt="GitHub Repo stars"></a>
+  <a href="https://github.com/Melmaphother/Science-Star/network/members"><img src="https://img.shields.io/github/forks/Melmaphother/Science-Star" alt="GitHub forks"></a>
+  <a href="https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpeg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
 </p>
 
 ## 📢 News
@@ -11,7 +11,7 @@
 <details open>
 <summary><b>Recent Updates</b></summary>
 
-- [2025.08.15] **Open-Agent Init**: We release Open-Agent. It is an user-friendly open platform for building, extending, and experimenting with scientific agents.
+- [2025.08.15] **Science-Star Init**: We release Science-Star. It is an user-friendly open platform for building, extending, and experimenting with scientific agents.
 
 </details>
 
@@ -25,29 +25,37 @@ We introduce **Science-Star**, the open-source framework built to revolutionize 
 
 - **Integrated Visualization**: An end-to-end, extensible visualization suite powered by [streamlit](https://github.com/streamlit/streamlit). It streamlines the entire workflow from data inspection and real-time experiment monitoring to results logging and analysis.
 
-- **Plug-and-Play Modularity**: Core components (`dataLoader`, `memory`, `planner`, `tool`, `evaluator`) are designed with well-defined interfaces. This modularity enables effortless substitution and customization.
+- **Plug-and-Play Modularity**: Core components (`dataloader`, `memory`, `planner`, `tool`, `evaluator`) are designed with well-defined interfaces. This modularity enables effortless substitution and customization.
 
-- **Scientific Extensibility**: A dedicated adaptation layer for seamless integration of scientific tools (e.g., Chemistry, Biology). It has built-in support for advanced retrieval and literature-based Retrieval-Augmented Generation (RAG).
+- **Scientific Extensibility**: Science-Star has built-in support for advanced retrieval and literature-based Retrieval-Augmented Generation (RAG).
+
+## Incoming Features
+
+- **More Scientific Extensibility**: We will add more tools for seamless integration of specific scientific tools (e.g., Chemistry, Biology).
+
+- **More Architectures Support**: We will support more agent architectures outside the ReAct framework.
+
+- **More Tasks and Datasets Support**: We will support more agent datasets and tasks, like GAIA etc.
 
 ## 🚀 Easy Experiments
 
-- [Brief Project Structure](https://github.com/Melmaphother/Open-Agent/blob/main/docs/project_structure.md)
-- [Environment Setup](https://github.com/Melmaphother/Open-Agent/blob/main/docs/installation.md)
-- [Quick Start: Try o4-mini + ReAct on HLE-Small](https://github.com/Melmaphother/Open-Agent/blob/main/docs/quickstart.md)
+- [Brief Project Structure](https://github.com/Melmaphother/Science-Star/blob/main/docs/project_structure.md)
+- [Environment Setup](https://github.com/Melmaphother/Science-Star/blob/main/docs/installation.md)
+- [Quick Start: Try o4-mini + ReAct on HLE-Small](https://github.com/Melmaphother/Science-Star/blob/main/docs/quickstart.md)
 
-## 🛠️ Extending Open-Agent with Your Own Tools and Workflows
+## 🛠️ Extending Science-Star with Your Own Tools and Workflows
 
 Additional resources are available in the codebase:
 
-- Example tools: `open_agent/tools/`
-- Data preprocessing: `open_agent/data_utils`
-- Visualization: `visualization`
+- Example tools: `science_star/tools/`
+- Data preprocessing: `science_star/data_utils`
+- Visualization: `visualization/vis_xx`
 
 ## ℹ️ Feedback
 
 We welcome all forms of feedback! Please raise an issue for bugs, questions, or suggestions. This helps our team address common problems efficiently and builds a more productive community.
 
-**Join our community**: Connect with other users and our development team in our [WeChat group](https://github.com/Melmaphother/Open-Agent/assets/wechat.jpeg).
+**Join our community**: Connect with other users and our development team in our [WeChat group](https://github.com/Melmaphother/Science-Star/assets/wechat.jpeg).
 
 ## 🤝 Contributors
 
@@ -63,14 +71,14 @@ We extend our gratitude to [OAgent](https://github.com/OPPO-PersonalAI/OAgents) 
 
 ## ✍️ Citation
 
-**Open-Agent**
+**Science-Star**
 
 ```md
-@misc{Open-Agent,
+@misc{Science-Star,
 author = {Daoyu Wang, Qingchuan Li, Tian Gao, Shuo Yu, Xiaoyu Tao},
-title = {Open-Agent: An Open Platform for Building, Extending, and Experimenting with Scientific Agents.},
+title = {Science-Star: An Open Platform for Building, Extending, and Experimenting with Scientific Agents.},
 year = {2025},
 organization = {GitHub},
-url = {https://github.com/Melmaphother/Open-Agent},
+url = {https://github.com/Melmaphother/Science-Star},
 }
 ```

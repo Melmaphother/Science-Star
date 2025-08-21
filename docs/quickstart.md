@@ -1,15 +1,15 @@
 # 🚀 Quick Start Guide
 
-Welcome to Open-Agent! Get up and running in minutes with this simple guide. ⚡
+Welcome to Science-Star! Get up and running in minutes with this simple guide. ⚡
 
 ## 📋 Prerequisites
 
-Make sure you have completed the [Environment Setup](installation.md) first! 🔧
+Make sure you have completed the [Installation](installation.md) first! 🔧
 
 ## 🎯 Part 1: Running HLE Evaluation
 
 ### 🔥 One-Command Launch
-The fastest way to see Open-Agent in action:
+The fastest way to see Science-Star in action:
 
 ```bash
 sh scripts/run_hle.sh
@@ -25,7 +25,7 @@ This will:
 Want to customize your run? Modify the parameters:
 
 ```bash
-python3 open_agent/run_hle.py \
+python3 science_star/run_hle.py \
   config=configs/hle.yaml \
   model_id=OpenAI-o4-mini \
   subset=small \
@@ -79,11 +79,11 @@ Perfect for analyzing your experiment results and comparing different model perf
 
 ### 🔬 **For Researchers**
 - Modify `configs/hle.yaml` to test different strategies
-- Add custom tools in `open_agent/tools/`
+- Add custom tools in `science_star/tools/`
 - Experiment with reflection and planning parameters
 
 ### 🛠️ **For Developers** 
-- Explore the RAG pipeline in `open_agent/rag/`
+- Explore the RAG pipeline in `science_star/rag/`
 - Build custom retrievers and embeddings
 - Integrate new model backends
 
