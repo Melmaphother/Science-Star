@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://github.com/Melmaphother/Science-Star/stargazers"><img src="https://img.shields.io/github/stars/Melmaphother/Science-Star" alt="GitHub Repo stars"></a>
   <a href="https://github.com/Melmaphother/Science-Star/network/members"><img src="https://img.shields.io/github/forks/Melmaphother/Science-Star" alt="GitHub forks"></a>
-  <a href="https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpeg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
+  <a href="https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
 </p>
 
 <p align="center">
@@ -66,7 +66,7 @@ Using o4-mini-2025-04-16 as our base model, we have achieved **state-of-the-art 
 
 We welcome all forms of feedback! Please raise an issue for bugs, questions, or suggestions. This helps our team address common problems efficiently and builds a more productive community.
 
-**Join our community**: Connect with other users and our development team in our [WeChat group](https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpeg).
+**Join our community**: Connect with other users and our development team in our [WeChat group](https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.j p g).
 
 ## 🤝 Contributors
 
