@@ -86,7 +86,7 @@ We extend our gratitude to [OAgent](https://github.com/OPPO-PersonalAI/OAgents) 
 
 ```md
 @misc{Science-Star,
-author = {Daoyu Wang, Qingchuan Li, Tian Gao, Shuo Yu, Xiaoyu Tao},
+author = {Daoyu Wang, Qingchuan Li, Tian Gao, Shuo Yu, Xiaoyu Tao, Mingyue Cheng, Qi Liu},
 title = {Science-Star: An Open Platform for Building, Extending, and Experimenting with Scientific Agents.},
 year = {2025},
 organization = {GitHub},
