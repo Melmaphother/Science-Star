@@ -66,7 +66,7 @@ Using o4-mini-2025-04-16 as our base model, we have achieved **state-of-the-art 
 
 We welcome all forms of feedback! Please raise an issue for bugs, questions, or suggestions. This helps our team address common problems efficiently and builds a more productive community.
 
-**Join our community**: Connect with other users and our development team in our [WeChat group](https://github.com/Melmaphother/Science-Star/assets/wechat.jpeg).
+**Join our community**: Connect with other users and our development team in our [WeChat group](https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpeg).
 
 ## 🤝 Contributors
 
