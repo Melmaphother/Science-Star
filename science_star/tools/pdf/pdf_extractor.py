@@ -10,7 +10,7 @@ from typing import Optional
 from smolagents import Tool
 from loguru import logger
 
-from tools.pdf.pdf_utils import parse_doc
+from tools.pdf.pdf_backend import parse_doc
 from rag_processor.embeddings import OpenAIEmbedding
 from rag_processor.retrievers import SimpleVectorRetriever
 

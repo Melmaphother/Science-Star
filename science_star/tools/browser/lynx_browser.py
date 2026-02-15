@@ -14,7 +14,7 @@ import requests
 
 from smolagents import Tool
 
-from tools.browser.cookies import COOKIES
+from tools.browser.browser_backend import COOKIES
 from tools.inspector.convert_backends import (
     FileConversionException,
     MarkdownConverter,
