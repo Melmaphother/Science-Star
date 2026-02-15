@@ -1,9 +1,10 @@
-<h1 align="center"> 🌟 Science-Star: An Open Platform for Building, Extending, and Experimenting with Scientific Agents. </h1>
+<h1 align="center">🌟 Science-Star — Your Scientific AI Agents</h1>
+
+<p align="center"><i>Build, extend, and experiment with scientific agents. One platform. Zero friction.</i></p>
 
 <p align="center">
   <a href="https://github.com/Melmaphother/Science-Star/stargazers"><img src="https://img.shields.io/github/stars/Melmaphother/Science-Star" alt="GitHub Repo stars"></a>
   <a href="https://github.com/Melmaphother/Science-Star/network/members"><img src="https://img.shields.io/github/forks/Melmaphother/Science-Star" alt="GitHub forks"></a>
-  <a href="https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpg"><img src="https://img.shields.io/badge/微信-green?logo=wechat&amp"></a>
 </p>
 
 <p align="center">
@@ -16,13 +17,14 @@
 <details open>
 <summary><b>Recent Updates</b></summary>
 
-- [2025.08.21] **Science-Star Init**: We release Science-Star. It is an user-friendly open platform for building, extending, and experimenting with scientific agents.
+- [2026.02] **Major Update**: More benchmark support, multi-agent architecture (CodeAgent + search agent), refactored run scripts (`run_multi_agent.py` / `run_single_agent.py`), and streamlined project structure.
+- [2025.08] **Science-Star Init**: We release Science-Star — an open platform for building, extending, and experimenting with scientific agents.
 
 </details>
 
 ## 🧠 Overview
 
-We introduce **Science-Star**, the open-source framework built to revolutionize how we build, extend, and experiment scientific AI agents. Frustrated by the limitations of existing tools, we engineered Science-Star to be intuitive yet powerful. At its core, Science-Star combines a robust **ReAct-based engine** with essential features like Planning, Action, Memory and Reflection, integrated **HLE dataset support**, and **powerful visualization tools**. It's an all-in-one platform designed to get your ideas from concept to reality, faster than ever. Whether you are a seasoned researcher or a curious developer, Science-Star provides the tools you need to push the boundaries of science. The next breakthrough is waiting. Let's build it together. Join the Science-Star community today!
+**Science-Star** is your open-source platform for scientific AI agents. Built on the **ReAct** engine with Planning, Action, Memory, and Reflection, it ships with **Humanity's Last Exam (HLE)** and **GAIA** benchmarks, rich tooling (search, crawl, PDF, browser, RAG), and end-to-end visualization. One command to run, one platform to extend—whether you're a researcher or a developer, Science-Star gets you from idea to experiment, fast.
 
 > **Also check out [Awesome-Agent-Craft](https://github.com/Melmaphother/Awesome-Agent-Craft)**: Our curated collection of papers and benchmarks on unlocking the potential of Scientific AI Agents.
 
@@ -30,47 +32,39 @@ We introduce **Science-Star**, the open-source framework built to revolutionize 
 
 ## 🔥 Key Features
 
-- **Integrated Visualization**: An end-to-end, extensible visualization suite powered by [streamlit](https://github.com/streamlit/streamlit). It streamlines the entire workflow from data inspection and real-time experiment monitoring to results logging and analysis.
+- **🔧 Rich Toolbox** — Search (SerpAPI, Tavily, DuckDuckGo, Wayback), crawl (Jina, crawl4ai), PDF parser, browser use, inspector (doc/audio/visual), retriever (RAG), code execution. Add yours via a clean interface.
+- **🤖 Multi-Agent & Modular** — CodeAgent + search agent out of the box. One config to switch single ↔ multi. Swap loaders, models, tools—core logic stays untouched.
+- **📊 HLE & GAIA + Viz** — One-click benchmarks with loaders and scorers. Streamlit dashboards for data exploration and result analysis. Zero setup.
 
-- **Plug-and-Play Modularity**: Core components (`dataloader`, `memory`, `planner`, `tool`, `evaluator`) are designed with well-defined interfaces. This modularity enables effortless substitution and customization.
+## 🚩 Roadmap
 
-- **Scientific Extensibility**: Science-Star has built-in support for advanced retrieval and literature-based Retrieval-Augmented Generation (RAG).
+- **Domain Tools**: Chemistry, Biology, and other scientific toolkits
+- **More Architectures**: Beyond ReAct—new agent paradigms
+- **More Benchmarks**: Additional datasets and evaluation suites
 
-## 🚩 Incoming Features
+## 🚀 Get Started
 
-- **More Scientific Extensibility**: We will add more tools for seamless integration of specific scientific tools (e.g., Chemistry, Biology).
+1. **Configure environment** — conda, smolagents, API keys, and tests. → [Installation](https://github.com/Melmaphother/Science-Star/blob/main/docs/installation.md)
+2. **Run experiments** — HLE & GAIA in one command, customize configs, launch visualization dashboards. → [Quick Start](https://github.com/Melmaphother/Science-Star/blob/main/docs/quickstart.md)
+3. **Explore the architecture** — tools, loaders, RAG, configs, and how they connect. → [Project Structure](https://github.com/Melmaphother/Science-Star/blob/main/docs/project_structure.md)
 
-- **More Architectures Support**: We will support more agent architectures outside the ReAct framework.
+## 🛠️ Extend
 
-- **More Tasks and Datasets Support**: We will support more agent datasets and tasks, like GAIA etc.
-
-## 🚀 Easy Experiments
-
-- [Brief Project Structure](https://github.com/Melmaphother/Science-Star/blob/main/docs/project_structure.md)
-- [Environment Setup](https://github.com/Melmaphother/Science-Star/blob/main/docs/installation.md)
-- [Quick Start: Try o4-mini + ReAct on HLE-Small](https://github.com/Melmaphother/Science-Star/blob/main/docs/quickstart.md)
-
-## 🛠️ Extending Science-Star with Your Own Tools and Workflows
-
-Additional resources are available in the codebase:
-
-- Example tools: `science_star/tools/`
-- Data preprocessing: `science_star/data_utils`
-- Visualization: `visualization/vis_xx`
+- **Tools**: `science_star/tools/` — search, crawl, PDF, browser, retriever
+- **Loaders**: `data/hle_loader.py`, `data/gaia_loader.py`
+- **Viz**: `visualization/vis_dataset.py`, `visualization/vis_output.py`
 
 ## 🧪 Experimental Results
 
-Using o4-mini-2025-04-16 as our base model, we have achieved **state-of-the-art (SOTA)** results on a small-scale HLE dataset by implementing an **end-to-end pipeline** that leverages the **ReAct** framework with integrated **planning, action, memory and reflection** modules. The project requires further testing and refinement. We invite the open-source community to join us in shaping the future of this work. Let's build together!
+Using o4-mini-2025-04-16 as our base model, we have achieved leading results on a small-scale HLE dataset by implementing an **end-to-end pipeline** that leverages the **ReAct** framework with integrated **planning, action, memory and reflection** modules. The project requires further testing and refinement. We invite the open-source community to join us in shaping the future of this work. Let's build together!
 
 ## ℹ️ Feedback
 
 We welcome all forms of feedback! Please raise an issue for bugs, questions, or suggestions. This helps our team address common problems efficiently and builds a more productive community.
 
-**Join our community**: Connect with other users and our development team in our [WeChat group](https://github.com/Melmaphother/Science-Star/blob/main/assets/wechat.jpg).
-
 ## 🤝 Contributors
 
-**Student Contributors**: [**Daoyu Wang**](https://github.com/Melmaphother), [**Qingchuan Li**](https://github.com/wufeiwuwoshihua), [**Tian Gao**](https://github.com/SkyeGT), [**Shuo Yu**](https://github.com/fishsure), [**Xiaoyu Tao**](https://github.com/Xiaoyu-Tao), [**Ze Guo**](https://github.com/Kawai1Angel)
+**Student Contributors**: [**Daoyu Wang**](https://melmaphother.github.io), [**Qingchuan Li**](https://github.com/wufeiwuwoshihua), [**Tian Gao**](https://github.com/SkyeGT), [**Shuo Yu**](https://fishsure.github.io), [**Xiaoyu Tao**](https://Xiaoyu-Tao.github.io), [**Ze Guo**](https://github.com/Kawai1Angel)
 
 **Supervisors**: [**Qi Liu**](http://staff.ustc.edu.cn/~qiliuql/), [**Mingyue Cheng**](https://mingyue-cheng.github.io/)
 
