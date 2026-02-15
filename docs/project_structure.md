@@ -10,35 +10,43 @@ The beating heart of our scientific agent ecosystem! This is where all the magic
 Your mission control center! 🎮 This powerful entry point coordinates the entire HLE evaluation workflow, managing agent lifecycles, experiment configurations, and result collection. Think of it as the conductor of a scientific symphony orchestra! 🎼
 
 ### 🛠️ **tools/** - The Agent's Swiss Army Knife
-A treasure trove of specialized tools that give your agents superpowers! 💪
-- 🔍 **searcher.py** & **reformulator.py** - Information hunting and query refinement
-- 🕷️ **web_crawler.py** family - Web exploration capabilities  
-- 🎯 **scorer.py** & **gaia_scorer.py** - Performance evaluation engines
-- 👁️ **visual_inspector_tool.py** & **audio_inspector_tool.py** - Multimodal analysis
-- 🤖 **automodel.py** - Dynamic model management
-- And many more specialized instruments! 🧰
+A treasure trove of specialized tools, organized by category! 💪
 
-### 📊 **data_utils/** - Data Wizardry Department
-Lightweight but mighty data preprocessing and loading utilities! 🎭
-- **hle_loader.py** - Your gateway to the HLE dataset universe
+- **search/** - 🔍 search_backends (serpapi, tavily, duckduckgo, wiki), search_tool (SearchTool, AggregatedSearchTool, WaybackSearchTool)
+- **crawl/** - 🕷️ crawl_backends (jina, crawl4ai), crawl_tools (CrawlUrlTool, SearchAndCrawlTool)
+- **pdf/** - 📄 PDF processing (pdf_extractor, pdf_utils)
+- **inspector/** - 👁️ document_inspector (DocumentInspectorTool), audio, visual + convert_backends (doc→markdown)
+- **retriever/** - 🔎 Semantic retrieval over text (RetrieverTool, wraps rag_processor)
+- **browser/** - 🌐 agent_browser (BrowserUseTool), lynx_browser (SimpleTextBrowser), cookies
+- **code/** - 📝 authorized_imports (AUTHORIZED_IMPORTS for code-execution sandbox)
 
-### 🧠 **agent_kb/** - Knowledge Base Command Center
-The brain trust of your agents! 🧙‍♂️
-- **agent_kb_retrieval.py** - Smart knowledge retrieval
-- **agent_kb_service.py** - Knowledge service orchestration  
-- **prompts.yaml** - The secret sauce of agent communication
+Import directly from submodules, e.g. `from tools.search.search_tool import SearchTool`, `from validator import get_scorer`.
 
-### 🔄 **reflectors/** - The Wisdom Amplifiers
-Where agents learn to think about their thinking! 🤔💭
-- **search_reflector.py** - Self-improving search strategies
-- **prompts/** - Reflection prompt templates for deeper reasoning
+### 📏 **validator/** - Answer Evaluation
+Unified entry point for dataset-specific scoring via `get_scorer(dataset, config)`:
+- **base.py** - BaseScorer, EvaluationResult
+- **llm_judge_scorer.py** - LLM-as-a-Judge (parent, default: gpt-4o-2024-11-20, temp=0, max_tokens=512)
+- **gaia_scorer.py** - GAIA: rule-based (numbers, lists, strings, close-call)
+- **hle_scorer.py** - HLE: inherits LLM-as-a-Judge
+
+### 📥📤 **io_processor/** - I/O Processing
+File context preparation and response reformulation (not tools):
+
+- **file_context.py** - Generate descriptions of attached files for agent context
+- **reformulator.py** - Extract final answer from agent conversation
+
+### 📊 **data/** - Data & Loaders
+Dataset loaders and data files. 🎭
+- **hle_loader.py** - HLE dataset loader
+- **gaia_loader.py** - GAIA dataset loader
+- **HLE/**, **GAIA/** - Dataset directories
 
 ### 🎯 **hle_eval/** - Evaluation Excellence Center
 The quality assurance department! 📏✅
 - **run_model_predictions.py** - Prediction pipeline orchestrator
 - **run_judge_results.py** - Result validation and scoring
 
-### 🤖 **rag/** - Retrieval-Augmented Generation Powerhouse
+### 🤖 **rag_processor/** - Retrieval-Augmented Generation Powerhouse
 A comprehensive RAG ecosystem that would make any AI researcher jealous! 🏆
 
 #### 🔌 **embeddings/** - The Vector Virtuosos
@@ -66,7 +74,7 @@ Multi-tier storage architecture:
 - **conversion/** - Format transformation wizards
 - **sharegpt/** - ShareGPT format support with Hermes integration
 
-## 🏭 Foundation Framework - `src/`
+## 🏭 Foundation Framework - `smolagents/` (git submodule)
 
 ### 🔧 **smolagents/** - The Engine Room
 Built on the powerful smolagents framework! 🚂
@@ -78,13 +86,14 @@ Built on the powerful smolagents framework! 🚂
 
 ## ⚙️ Configuration Command Center - `configs/`
 
-### 📋 **hle.yaml** - The Master Control File
-Your experiment's DNA! 🧬 Configure everything from model selection to search strategies:
-- 🎛️ Runtime parameters (concurrency, debugging)
-- 🎯 Dataset selection (subset, category filtering)
-- 🤖 Model configurations (main, search, retrieval models)
-- 🔄 Advanced features (reflection, planning, memory)
-- 🎮 Search strategies (Beam Search, Tree Search, BON)
+### 📋 **gaia.yaml** / **hle.yaml** - Nested Config Structure
+Your experiment's DNA! 🧬 All configs use nested sections. CLI override with dot notation: `runtime.concurrency=2`, `dataset.subset=medium`, `models.main=gpt-4o`.
+
+- **runtime/** - concurrency, debug, run_name, date_time_load_from
+- **dataset/** - name, subset, level (gaia) | category (hle), selected_tasks
+- **models/** - name, temperature, max_tokens (gaia)
+- **agents/** - max_steps, planning_interval, verbose (gaia)
+- **validator/** - model, temperature, max_tokens (for LLM-as-a-Judge)
 
 ## 📊 Data Universe - `data/`
 
@@ -139,7 +148,7 @@ Open-source goodness with proper attribution! 📜
 🔥 **Hot Paths for Development:**
 - Start with `science_star/run_hle.py` for main workflows
 - Explore `science_star/tools/` for extending agent capabilities  
-- Dive into `science_star/rag/` for advanced retrieval features
+- Dive into `science_star/rag_processor/` for advanced retrieval features
 - Check `visualization/` for data exploration and result analysis
 - Modify `configs/hle.yaml` for experiment customization
 

@@ -1,0 +1,3 @@
+[submodule "smolagents"]
+	path = smolagents
+	url = https://github.com/huggingface/smolagents.git
