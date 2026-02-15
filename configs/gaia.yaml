@@ -3,14 +3,14 @@
 runtime:
   concurrency: 1
   debug: false
-  run_name: gpt-4o-mini-hle
+  run_name: gpt-4o-mini-gaia
   date_time_load_from: null
 
 dataset:
-  name: hle
+  name: gaia
   subset: small  # null | small | medium | large
-  category: null  # null | bio | chem | cs | engineer | social | math | physics | other
-  selected_tasks: []
+  level: null    # null | level1 | level2 | level3
+  selected_tasks: [1]  # 1-based: 1 = first question, for full-flow test
 
 models:
   name: gpt-4o-mini
@@ -20,7 +20,7 @@ models:
 agents:
   max_steps: 12
   planning_interval: 1
-  verbose: false
+  verbose: true
 
 validator:
   model: gpt-4o-2024-11-20
