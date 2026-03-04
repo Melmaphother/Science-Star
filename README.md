@@ -64,7 +64,7 @@ We welcome all forms of feedback! Please raise an issue for bugs, questions, or 
 
 ## 🤝 Contributors
 
-**Student Contributors**: [**Daoyu Wang**](https://melmaphother.github.io), [**Qingchuan Li**](https://github.com/wufeiwuwoshihua), [**Tian Gao**](https://github.com/SkyeGT), [**Shuo Yu**](https://fishsure.github.io), [**Xiaoyu Tao**](https://Xiaoyu-Tao.github.io), [**Ze Guo**](https://github.com/Kawai1Angel)
+**Student Contributors**: [**Daoyu Wang**](https://melmaphother.github.io), [**Qingchuan Li**](https://github.com/qingchuanli), [**Tian Gao**](https://github.com/SkyeGT), [**Shuo Yu**](https://fishsure.github.io), [**Xiaoyu Tao**](https://Xiaoyu-Tao.github.io), [**Ze Guo**](https://github.com/Kawai1Angel)
 
 **Supervisors**: [**Qi Liu**](http://staff.ustc.edu.cn/~qiliuql/), [**Mingyue Cheng**](https://mingyue-cheng.github.io/)
 
